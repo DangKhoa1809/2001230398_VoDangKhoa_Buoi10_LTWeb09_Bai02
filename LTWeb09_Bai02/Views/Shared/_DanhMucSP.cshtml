@@ -1,0 +1,22 @@
+﻿@model List<LTWeb09_Bai02.Models.LoaiSanPham>
+
+@{
+    ViewBag.Title = "_DanhMucSP";
+}
+
+<div class="shadow-sm border rounded-3 overflow-hidden">
+    <div class="py-2 px-3 fw-bold text-bg-success"><h6 class="mb-0">Danh mục sản phẩm</h6></div>
+
+    <div class="list-group list-group-flush">
+        <a href="@Url.Action("HienThiSanPham", "SanPham")" class="list-group-item list-group-item-action border-bottom" style="color: blue;">
+            Tất cả sản phẩm
+        </a>
+
+        @foreach (var sp in Model)
+        {
+            <a href="@Url.Action("SanPhamTheoLoai", "SanPham", new { maloai = sp.MaLoai })" class="list-group-item list-group-item-action border-bottom" style="color: blue;">
+                @sp.TenLoai
+            </a>
+        }
+    </div>
+</div>

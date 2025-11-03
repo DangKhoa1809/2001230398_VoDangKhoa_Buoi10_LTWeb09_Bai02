@@ -1,0 +1,51 @@
+﻿﻿﻿﻿@model List<LTWeb09_Bai02.Models.SanPham>
+
+@{
+    ViewBag.Title = "Hiển thị sản phẩm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <h3 class="text-center mb-4">
+        @if (ViewBag.TenLoai != null)
+        {
+            <text>@ViewBag.TenLoai</text>
+        }
+        else
+        {
+            <text>LIST PRODUCT</text>
+        }
+    </h3>
+
+    <div class="product-group mt-3">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+            @foreach (var sp in Model)
+            {
+                <div class="col">
+                    <div class="card shadow-sm h-100 d-flex flex-column text-center">
+                        <img src="~/Images/@sp.HinhAnh" class="card-img-top product-img" alt="@sp.TenSP" />
+
+                        <div class="card-body">
+                            <h6 class="card-title text-truncate fw-bold">@sp.TenSP</h6>
+                            <p class="card-text text-danger fw-bold">@String.Format("{0:N0} VNĐ", sp.Gia)</p>
+                        </div>
+
+                        <div class="card-footer bg-white border-0 mt-auto">
+                            <a href="@Url.Action("ChiTiet", "SanPham", new { id = sp.MaSP })" class="btn btn-primary btn-sm w-100">Xem chi tiết</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</body>
+</html>
+
+
